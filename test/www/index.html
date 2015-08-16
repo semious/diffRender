@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>生活缴费</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="https://a.alipayobjects.com/amui/dpl/8.5/amui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="https://t.alipayobjects.com/images/rmsweb/T1.GtgXihcXXXXXXXX.css">
+    <style>
+        .log {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            background: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 3px;
+            z-index: 1000;
+        }
+
+        .red {
+            border: 1px solid #ff0000;
+        }
+
+        .green {
+            border: 1px solid #00ff00;
+        }
+
+        .J-fa-item {
+            /*display: none;*/
+        }
+    </style>
+    <!--<script type="text/javascript" src="https://t.alipayobjects.com/tfscom/T1a7JfXfdyXXXXXXXX.js"></script>-->
+    <script src="utils/bsl.js"></script>
+    <script src="mock/family.js"></script>
+    <!--<script src="utils/util.js"></script>-->
+</head>
+<body>
+<div class="logContainer">
+    <div id="log" class="log"></div>
+</div>
+
+<div id="content-wrap" style="padding-bottom:50px;">
+    <div id="area1"></div>
+    <div id="area2"></div>
+    <!--<div id="test" class="J-fa-item in-family-item"></div>-->
+
+    <div class="bottom-btn-wrap">
+        <a class="add-account">新增</a>
+    </div>
+
+    <div id="add-account-panel" style="display:none">
+        <div class="in-biz-list" id="service-list">
+            <a class="in-biz-item J-service-item light" mode="ELECTRIC" style="border-left:0;">
+                <i class="iconfont in-biz-item-img"></i>
+                <am class="in-biz-item-text">电费</am>
+            </a>
+            <a class="in-biz-item J-service-item light" mode="WATER" style="">
+                <i class="iconfont in-biz-item-img"></i>
+                <am class="in-biz-item-text">水费</am>
+            </a>
+            <a class="in-biz-item J-service-item light" mode="GAS" style="">
+                <i class="iconfont in-biz-item-img"></i>
+                <am class="in-biz-item-text">燃气费</am>
+            </a>
+            <a class="in-biz-item J-service-item light" mode="COMMUN" style="border-left:0;">
+                <i class="iconfont in-biz-item-img"></i>
+                <am class="in-biz-item-text">固话宽带</am>
+            </a>
+            <a class="in-biz-item J-service-item light" mode="CATV" style="">
+                <i class="iconfont in-biz-item-img"></i>
+                <am class="in-biz-item-text">有线电视</am>
+            </a>
+            <a class="in-biz-item J-service-item light" mode="WUYE" style="">
+                <i class="iconfont in-biz-item-img"></i>
+                <am class="in-biz-item-text">物业费</am>
+            </a>
+        </div>
+        <a id="cancel-add-account">取消</a>
+    </div>
+</div>
+
+<script src="https://a.alipayobjects.com/amui/zepto/1.1.3/zepto.js" charset="UTF-8"></script>
+<script src="https://a.alipayobjects.com/publichome-static/antBridge/antBridge.min.js" charset="UTF-8"></script>
+<script src="https://a.alipayobjects.com/static/fastclick/1.0.6/fastclick.min.js" charset="UTF-8"></script>
+<script src="diffDOM.js" charset="UTF-8"></script>
+<!--<script src="htmlparser.js"></script>-->
+<script src="lib/fastRender.js"></script>
+<!--<script src="https://a.alipayobjects.com/u/h5/js/201506/59mlaM1Ic1.js" charset="UTF-8"></script>-->
+<script>
+    var count = 100;
+    function init() {
+        ulStr = [];
+        ulStr.push("<ul class='am-list-item' id='ul-test'>");
+        for (var i = 0; i < count; i++) {
+            ulStr.push("<li class='am-list-content'><span class='red'>" + i + "</span></li>");
+        }
+        ulStr.push("</ul>");
+        $("#test").html(ulStr.join(""));
+    }
+    //    init();
+
+    //    console.timeEnd("mine");
+
+    //    setTimeout(function () {
+    //        wrapTextNode();
+    //    wrapHTML(wrapTextNode());
+    //    }, 1000);
+
+    function wrapTextNode() {
+//        return;
+        return function () {
+            setTimeout("init()", 1000);
+            setTimeout(function () {
+                var time = +new Date();
+//                Array.prototype.slice.call(document.querySelectorAll("#ul-test li span")).forEach(function (span) {
+//                    span.innerHTML = "wrapTextNode";
+//                    span.className = "green";
+//                });
+                document.querySelector("div[data-id='20150609000700110000830400000101'] .in-fa-item-name").innerHTML = "他家1";
+                document.querySelector("div[data-id='20150609000700110000830400000102'] .in-fa-item-name").innerHTML = "他家2";
+                document.querySelector("div[data-id='20150609000700110000830400000103'] .in-fa-item-name").innerHTML = "他家3";
+                $('.log').html($('.log').html() + "<br/>wrapTextNode:" + (+new Date() - time) + " ms");
+            }, 2000);
+        }
+    }
+
+    function wrapHTML(cb) {
+        $('.log').html("wrapHTML:");
+        setTimeout(function () {
+//            ulStr = [];
+//            ulStr.push("<ul class='am-list-item' id='ul-test'>");
+//            for (var i = 0; i < count; i++) {
+//                ulStr.push("<li class='am-list-content'><span class='green'>replace</span></li>");
+//            }
+//            ulStr.push("</ul>");
+//            var string = ulStr.join("");
+            var string = document.querySelector("#content-wrap").innerHTML;
+//            var time = +new Date();
+//            $("#test").html(string);
+
+            document.querySelector("#content-wrap").innerHTML = string;
+//            $('.log').html($('.log').html() + (+new Date() - time) + " ms");
+//            cb();
+        }, 1000);
+    }
+
+    $(document.body).ready(function () {
+        dd = new diffDOM();
+        var familyHTML = BSL.template($('#template').html())(familyData);
+//        console.log(familyHTML);
+//        var parser = require('html2hscript');
+//        parser('<h1>Hello World</h1>', function (err, hscript) {
+//            console.log(hscript);
+//        });
+        var t = +new Date();
+//        document.querySelector("#area1").innerHTML = familyHTML;
+        $("#area1").html(familyHTML);
+        setTimeout(function () {
+            console.log(+new Date() - t);
+        }, 0);
+//        var serviceHTML = BSL.template($('#service-tpl').html())(subfamily);
+//        $("#area1 .in-fa-item-biz").html(serviceHTML);
+//        $("#area1").append($("#area1 .J-fa-item").get(0).outerHTML)
+//                .append($("#area1 .J-fa-item").get(0).outerHTML)
+//                .append($("#area1 .J-fa-item").get(0).outerHTML);
+//
+//        familyHTML = BSL.template($('#template').html())(familyData2);
+//        console.log(familyHTML);
+//        var t = +new Date();
+//        document.querySelector("#area2").innerHTML = familyHTML;
+//        $("#area2").html(familyHTML);
+
+//        serviceHTML = BSL.template($('#service-tpl').html())(subfamily2);
+//        $("#area2 .in-fa-item-biz").html(serviceHTML);
+
+//        logStart();
+//        diff = dd.diff($("#area2").get(0), $("#area1").get(0));
+//        logEnd("diff时间：");
+//        console.log(diff);
+//        logStart();
+//        dd.apply($("#area2").get(0), diff);
+//        logEnd("应用diff时间");
+
+//        parseTest();
+
+    });
+
+    function parseTest() {
+//        var t = +new Date();
+//        document.body.innerHTML = document.body.innerHTML;
+//        console.log("innerHTMLBody", (+new Date()) - t);
+//        var fr = new FastRender(document.querySelector(".logContainer"), '<div id="log" class="log"></div>');
+//        fr.renderMock();
+//        fastRender.render(document.body, document.body.innerHTML);
+//        var handler = new Tautologistics.NodeHtmlParser.HtmlBuilder(function (error, dom) {
+//            if (error) {
+//
+//            }
+//            else {
+//
+//            }
+//        });
+//        logStart();
+//        var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
+//        parser.parseComplete(document.body.innerHTML);
+//        logEnd("DOMParse");
+//        console.log(handler.dom);
+    }
+
+    var timestamp = 0;
+    function logStart() {
+        if ($("#log").length <= 0) {
+            $(document.body).append("<div id='log' style='position: fixed;left: 0;bottom: 0;background: #ffffff;border: 1px solid #cccccc;padding: 3px;z-index: 1000;'></div>");
+        }
+        timestamp = +new Date();
+    }
+
+    function logEnd(logName) {
+        $('#log').html($('#log').html() + "<br />" + logName + "：" + (+new Date() - timestamp) + " ms");
+    }
+</script>
+<script id="template" type="text/x-bsl-template">
+
+    <%if(familys.length > 0){%>
+
+    <%for(var i=0, len=familys.length; i
+    <len; i++){%>
+    <div class="J-fa-item in-family-item" data-id="{{familys[i].familyId}}">
+
+        <div class="in-fa-item-name">{{familys[i].name}}</div>
+        <div class="in-fa-item-body am-flexbox">
+
+            <ul class="in-fa-item-biz">
+                <%for(var k=0; k
+                <familys [i].billKeyList.length; k++){%>
+                    <li class="in-fa-sub-biz J-{{familys[i].billKeyList[k].subBizType}}"
+                        mode="{{familys[i].billKeyList[k].subBizType}}"><i class="iconfont in-fa-biz-img"></i></li>
+                    <%}%>
+            </ul>
+
+            <ul class="in-fa-item-members am-flexbox-item">
+                <%for(var j=0; j
+                <familys [i].memberList.length && j
+                < 3; j++){%>
+                <li class="in-fa-item-member">
+                    <img class="in-fa-member-img"
+                         src="<%if(familys[i].memberList[j].headImg){%>{{familys[i].memberList[j].headImg}}<%}else{%>https://t.alipayobjects.com/images/rmsweb/T1goRfXahmXXXXXXXX.png<%}%>"/>
+                </li>
+                <%}%>
+
+                <%if(familys[i].memberList.length == 1 && familys[i].owner){%>
+                <li class="in-fa-item-member J-add-member"><i class="iconfont in-add-member-img"></i></li>
+                <%}%>
+            </ul>
+        </div>
+    </div>
+    <%}%>
+
+    <div class="bottom-btn-wrap">
+        <a id="add-account">新增</a>
+    </div>
+
+    <div id="add-account-panel" style="display:none">
+        <div class="in-biz-list" id="service-list"></div>
+        <a id="cancel-add-account">取消</a>
+    </div>
+
+    <%}else{%>
+    <div class="city-select" id="select-city">
+			<span class="city-select-loading" id="city">
+				定位中
+			</span>
+        <a class="city-select-down"></a>
+    </div>
+    <div class="in-biz-list" id="service-list"></div>
+    <%}%>
+</script>
+<script id="service-tpl" type="text/x-bsl-template">
+    <%for(var k=0; k
+    <subBizTypeList.length; k++){%>
+    <li class="in-fa-sub-biz <%if(subBizTypeList[k].open){%> family-item-light<%}%>"
+        mode="{{subBizTypeList[k].subBizType}}" <%if(k%3 == 0){%>style="border-left:0;"<%}else{%>style=""<%}%>>
+    <i class="iconfont in-fa-biz-img"></i>
+    </li>
+    <%}%>
+</script>
+</body>
+</html>

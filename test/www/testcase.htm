@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>测试用例页面</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="utils/amui.css"/>
+    <style>
+        body {
+            margin: 15px;
+        }
+
+        #testContainer {
+            margin-bottom: 15px;
+        }
+
+        #log {
+        }
+
+        .log1 {
+            background: #e0e0e0;
+            padding: 5px;
+        }
+
+        .log {
+            background: #006600;
+            color: white;
+        }
+    </style>
+    <script src="lib/fastRender.js"></script>
+</head>
+<body>
+<div id="testContainer">
+    <div id="log" class="log1">log1</div>
+
+
+    <div id="log2" class="log1">log2</div>
+</div>
+<div class="am-button start">开始</div>
+<script type="text/javascript">
+    document.querySelector(".start").addEventListener("click", function () {
+        var _a = +new Date();
+        var fr = new FastRender(document.querySelector("#testContainer"),
+                '<div id="log" style="height: 80px;width:80px;" class="log" data-id="438240843"><!-- 这是注释 --><span>123123</span></div><div><a href="javascript(void);"><span>link</span></a></div>');
+//        fr.renderMock();
+        fr.renderAll();
+        setTimeout(function () {
+            console.log("render", +new Date() - _a);
+        }, 0);
+    }, false);
+</script>
+</body>
+</html>

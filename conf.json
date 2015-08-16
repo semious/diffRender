@@ -1,0 +1,10 @@
+{
+  "workerNum": 5,
+  "filterTags": [
+	"script",
+	"style",
+	"link",
+	"head"
+  ],
+  "debugMode": true
+}
