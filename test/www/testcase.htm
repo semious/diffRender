@@ -43,8 +43,8 @@
         var _a = +new Date();
         var fr = new FastRender(document.querySelector("#testContainer"),
                 '<div id="log" style="height: 80px;width:80px;" class="log" data-id="438240843"><!-- 这是注释 --><span>123123</span></div><div><a href="javascript(void);"><span>link</span></a></div>');
-//        fr.renderMock();
-        fr.renderAll();
+        fr.renderMock();
+//        fr.renderAll();
         setTimeout(function () {
             console.log("render", +new Date() - _a);
         }, 0);
